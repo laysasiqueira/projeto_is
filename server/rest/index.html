@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8">
+  <title>Escola - Alunos</title>
+  <style>
+    body { font-family: sans-serif; padding: 20px; }
+    input, button, select { margin: 5px; padding: 8px; }
+    table { margin-top: 20px; border-collapse: collapse; width: 100%; }
+    th, td { border: 1px solid #ccc; padding: 8px; text-align: left; }
+    th { background-color: #f2f2f2; }
+    .actions button { margin-left: 5px; }
+  </style>
+</head>
+<body>
+  <h1>📚 Lista de Alunos</h1>
+
+  <!-- Formulário de adicionar aluno -->
+  <form id="formAluno">
+    <input type="number" id="id" placeholder="ID" required />
+    <input type="text" id="nome" placeholder="Nome" required />
+    <input type="number" id="idade" placeholder="Idade" required />
+    <button type="submit">Adicionar Aluno</button>
+  </form>
+
+  <!-- Filtros -->
+  <div>
+    <input type="text" id="filtroNome" placeholder="Filtrar por nome" />
+    <input type="number" id="filtroIdade" placeholder="Filtrar por idade" />
+    <button onclick="carregarAlunos()">🔍 Filtrar</button>
+    <button onclick="resetarFiltros()">🔄 Limpar Filtros</button>
+  </div>
+
+  <!-- Tabela de alunos -->
+  <table id="tabelaAlunos">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Nome</th>
+        <th>Idade</th>
+        <th>Ações</th>
+      </tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+
+  <script>
+    const apiUrl = "http://localhost:3000/alunos";
+
+    async function carregarAlunos() {
+      const res = await fetch(apiUrl);
+      const alunos = await res.json();
+
+      // Aplicar filtros
+      const nomeFiltro = document.getElementById("filtroNome").value.toLowerCase();
+      const idadeFiltro = document.getElementById("filtroIdade").value;
+
+      const filtrados = alunos.filter(aluno => {
+        const nomeOk = aluno.nome.toLowerCase().includes(nomeFiltro);
+        const idadeOk = idadeFiltro ? aluno.idade == idadeFiltro : true;
+        return nomeOk && idadeOk;
+      });
+
+      const tbody = document.querySelector("#tabelaAlunos tbody");
+      tbody.innerHTML = "";
+
+      filtrados.forEach(aluno => {
+        const tr = document.createElement("tr");
+        tr.innerHTML = `
+          <td>${aluno.id}</td>
+          <td>${aluno.nome}</td>
+          <td>${aluno.idade}</td>
+          <td class="actions">
+            <button onclick="deletarAluno(${aluno.id})">🗑️ Deletar</button>
+          </td>
+        `;
+        tbody.appendChild(tr);
+      });
+    }
+
+    async function deletarAluno(id) {
+      if (!confirm(`Tem certeza que deseja deletar o aluno ${id}?`)) return;
+      const res = await fetch(`${apiUrl}/${id}`, { method: "DELETE" });
+      if (res.ok) {
+        carregarAlunos();
+      } else {
+        alert("Erro ao deletar aluno.");
+      }
+    }
+
+    function resetarFiltros() {
+      document.getElementById("filtroNome").value = "";
+      document.getElementById("filtroIdade").value = "";
+      carregarAlunos();
+    }
+
+    document.getElementById("formAluno").addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const id = document.getElementById("id").value;
+      const nome = document.getElementById("nome").value;
+      const idade = document.getElementById("idade").value;
+
+      const novoAluno = { id: Number(id), nome, idade: Number(idade) };
+
+      const res = await fetch(apiUrl, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(novoAluno)
+      });
+
+      if (res.ok) {
+        document.getElementById("formAluno").reset();
+        carregarAlunos();
+      } else {
+        const erro = await res.json();
+        alert("Erro ao adicionar aluno:\n" + JSON.stringify(erro));
+      }
+    });
+
+    // Inicializa
+    carregarAlunos();
+  </script>
+</body>
+</html>

@@ -1,0 +1,12 @@
+{
+    "$id": "alunoSchema",
+    "type": "object",
+    "properties": {
+      "id": { "type": "integer" },
+      "nome": { "type": "string" },
+      "idade": { "type": "integer" }
+    },
+    "required": ["id", "nome", "idade"],
+    "additionalProperties": false
+  }
+  

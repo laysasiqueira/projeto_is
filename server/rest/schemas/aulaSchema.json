@@ -1,0 +1,16 @@
+{
+    "$id": "aulaSchema",
+    "type": "object",
+    "properties": {
+      "id": { "type": "integer" },
+      "materia": { "type": "string" },
+      "alunos": {
+        "type": "array",
+        "items": { "type": "integer" }
+      }
+    },
+    "required": ["id", "materia", "alunos"],
+    "additionalProperties": false
+  }
+  
+  
