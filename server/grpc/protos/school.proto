@@ -2,10 +2,12 @@ syntax = "proto3";
 
 package school;
 
+
 service SchoolService {
+  
   rpc GetStudent (StudentRequest) returns (StudentResponse);           // Read
   rpc ListStudents (Empty) returns (stream StudentResponse);          // Read All
-  rpc AddStudents (stream Request) returns (AddSummary);          // Create
+  //rpc AddStudent (StudentRequestRequest) returns (AddSummary);          // Create
   rpc UpdateStudent (StudentRequest) returns (StudentResponse);       // Update
   rpc DeleteStudent (StudentId) returns (DeleteResponse);             // Delete
   rpc AddStudents (stream StudentRequest) returns (AddSummary);       // Streaming Create

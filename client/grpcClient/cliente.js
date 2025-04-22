@@ -27,7 +27,7 @@ async function mainMenu() {
 
   switch (action) {
     case '➕ Adicionar Aluno':
-      await addStudent(); break;
+      await addStudents(); break;
     case '🔍 Buscar Aluno':
       await getStudent(); break;
     case '📋 Listar Alunos':
@@ -45,33 +45,32 @@ async function mainMenu() {
 }
 
 // Funções CRUD
-/**async function addStudent() {
-  const { id, name } = await inquirer.prompt([
-    { name: 'id', message: 'ID do aluno:' },
-    { name: 'name', message: 'Nome do aluno:' }
-  ]);
-
-  client.AddStudent({ id, name }, (err, res) => {
-    if (err) return console.error('Erro:', err.message);
-    console.log('Aluno adicionado:', res);
+async function addStudents() {
+  const call = client.AddStudents((err, res) => {
+    if (err) return console.error('Erro ao adicionar:', err.message);
+    console.log(`✅ Total de alunos adicionados: ${res.totalAdded}`);
   });
-}**/
-function adicionarAluno(client) {
-  inquirer.prompt([
-    { name: 'id', message: 'ID do aluno:' },
-    { name: 'name', message: 'Nome do aluno:' }
-  ]).then(answers => {
-    const call = client.AddStudents((err, response) => {
-      if (err) console.error('Erro:', err.message);
-      else console.log(`✅ Total de alunos adicionados: ${response.totalAdded}`);
-      mainMenu(client); // volta ao menu
-    });
 
-    // Envia o aluno via stream
-    call.write({ id: answers.id, name: answers.name });
-    call.end(); // finaliza a stream
-  });
+  let continueAdding = true;
+
+  while (continueAdding) {
+    const { id, name } = await inquirer.prompt([
+      { name: 'id', message: 'ID do aluno:' },
+      { name: 'name', message: 'Nome do aluno:' }
+    ]);
+
+    call.write({ id, name });
+
+    const { addMore } = await inquirer.prompt([
+      { type: 'confirm', name: 'addMore', message: 'Deseja adicionar outro?', default: false }
+    ]);
+
+    continueAdding = addMore;
+  }
+
+  call.end(); // Finaliza a stream
 }
+
 
 async function getStudent() {
   const { id } = await inquirer.prompt([{ name: 'id', message: 'ID do aluno:' }]);

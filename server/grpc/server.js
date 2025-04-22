@@ -30,3 +30,6 @@ server.bindAsync('0.0.0.0:50051', grpc.ServerCredentials.createInsecure(), () =>
   console.log('✅ Servidor rodando na porta 50051');
   server.start();
 });
+
+const { addStudent } = require('./data/dataHandler');
+addStudent({ id: '123', name: 'Test Student' });

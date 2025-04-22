@@ -1,3 +1,6 @@
+const fs = require('fs');
+const path = require('path');
+const filePath = path.resolve(__dirname, '../data/students.json');
 const { getStudents, addStudent } = require('../data/dataHandler');
 
 const SchoolService = {
@@ -27,6 +30,56 @@ const SchoolService = {
     call.on('end', () => {
       callback(null, { totalAdded: count });
     });
+  },
+
+  /**UpdateStudent: (call, callback) => {
+    const { id, ...updatedData } = call.request;
+    const success = updateStudent(id, updatedData);
+    if (success) {
+      callback(null, { success: true });
+    } else {
+      callback(new Error("Student not found"));
+    }
+  },
+
+  DeleteStudent: (call, callback) => {
+    const success = deleteStudent(call.request.id);
+    if (success) {
+      callback(null, { success: true });
+    } else {
+      callback(new Error("Student not found"));
+    }
+  },**/
+
+  UpdateStudent: (call, callback) => {
+    console.log('🔧 UpdateStudent chamado:', call.request);
+    const { id, name } = call.request;
+    const students = getStudents();
+    const index = students.findIndex(s => s.id === id);
+
+    if (index !== -1) {
+      students[index].name = name;
+      fs.writeFileSync(filePath, JSON.stringify(students, null, 2), 'utf8');
+      callback(null, students[index]);
+    } else {
+      callback(new Error('Aluno não encontrado.'));
+    }
+  },
+
+  // ✅ NOVO: Remover aluno
+  DeleteStudent: (call, callback) => {
+    console.log('🔧 UpdateStudent chamado:', call.request);
+    const { id } = call.request;
+    let students = getStudents();
+    const originalLength = students.length;
+    students = students.filter(s => s.id !== id);
+
+    if (students.length < originalLength) {
+      fs.writeFileSync(filePath, JSON.stringify(students, null, 2), 'utf8');
+      callback(null, { success: true });
+    } else {
+      callback(null, { success: false });
+    }
   },
 
   Chat: (call) => {
