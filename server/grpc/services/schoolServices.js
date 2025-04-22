@@ -1,7 +1,8 @@
-const { students } = require('../data/database');
+const { getStudents, addStudent } = require('../data/dataHandler');
 
-const SchoolServices = {
+const SchoolService = {
   GetStudent: (call, callback) => {
+    const students = getStudents();
     const student = students.find(s => s.id === call.request.id);
     if (student) {
       callback(null, student);
@@ -11,6 +12,7 @@ const SchoolServices = {
   },
 
   ListStudents: (call) => {
+    const students = getStudents();
     students.forEach(s => call.write(s));
     call.end();
   },
@@ -18,7 +20,7 @@ const SchoolServices = {
   AddStudents: (call, callback) => {
     let count = 0;
     call.on('data', (student) => {
-      students.push(student);
+      addStudent(student);
       count++;
     });
 
@@ -39,4 +41,4 @@ const SchoolServices = {
   },
 };
 
-module.exports = SchoolServices;
+module.exports = SchoolService;

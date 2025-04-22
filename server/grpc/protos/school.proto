@@ -3,13 +3,19 @@ syntax = "proto3";
 package school;
 
 service SchoolService {
-  rpc GetStudent (StudentRequest) returns (StudentResponse);           // Unário
-  rpc ListStudents (Empty) returns (stream StudentResponse);          // Server Streaming
-  rpc AddStudents (stream StudentRequest) returns (AddSummary);       // Client Streaming
-  rpc Chat (stream Message) returns (stream Message);                 // Bidirectional Streaming
+  rpc GetStudent (StudentRequest) returns (StudentResponse);           // Read
+  rpc ListStudents (Empty) returns (stream StudentResponse);          // Read All
+  rpc AddStudents (stream Request) returns (AddSummary);          // Create
+  rpc UpdateStudent (StudentRequest) returns (StudentResponse);       // Update
+  rpc DeleteStudent (StudentId) returns (DeleteResponse);             // Delete
+  rpc AddStudents (stream StudentRequest) returns (AddSummary);       // Streaming Create
+  rpc Chat (stream Message) returns (stream Message);                 // Bidirectional
 }
 
 message Empty {}
+
+
+
 
 message StudentRequest {
   string id = 1;
@@ -19,6 +25,14 @@ message StudentRequest {
 message StudentResponse {
   string id = 1;
   string name = 2;
+}
+
+message StudentId {
+  string id = 1;
+}
+
+message DeleteResponse {
+  bool success = 1;
 }
 
 message AddSummary {

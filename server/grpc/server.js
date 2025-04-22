@@ -4,6 +4,10 @@ const path = require('path');
 
 const schoolServices = require('./services/schoolServices');
 
+//const inquirer = require('inquirer');
+
+
+
 const packageDefinition = protoLoader.loadSync(
   path.resolve(__dirname, 'protos/school.proto'), // ou 'school.proto' se você renomear
   {
