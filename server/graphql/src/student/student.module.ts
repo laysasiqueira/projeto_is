@@ -1,14 +1,13 @@
 import { Module } from '@nestjs/common';
 import { StudentService } from './student.service';
-import { TypeOrmModule } from '@nestjs/typeorm';
-import { Student } from './student.entity';
 import { StudentResolver } from './student.resolver';
 import { LessonModule } from 'src/lesson/lesson.module';
+import { JsonStorageModule } from 'src/jsonstorage/json-storage.module';
 
 @Module({
   imports:[
-    TypeOrmModule.forFeature([Student]),
-    LessonModule
+    LessonModule,
+    JsonStorageModule
 ],
   providers: [StudentResolver, StudentService]
 })

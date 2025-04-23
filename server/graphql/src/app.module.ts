@@ -1,28 +1,19 @@
 import { Module } from '@nestjs/common';
-import { LessonModule } from './lesson/lesson.module';
 import { GraphQLModule } from '@nestjs/graphql';
-import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
-import { TypeOrmModule } from '@nestjs/typeorm';
-import { Lesson } from './lesson/lesson.entity';
+import { LessonModule } from './lesson/lesson.module';
 import { StudentModule } from './student/student.module';
-import { Student } from './student/student.entity';
+import { JsonStorageService } from './jsonstorage/json-storage.service'; // Importa o JsonStorageService
+import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 
 @Module({
   imports: [
-    TypeOrmModule.forRoot({
-      type:'mongodb',
-      url:'mongodb://localhost/school',
-      synchronize:true,
-      entities:[
-        Lesson, Student
-      ]
-    }),
     GraphQLModule.forRoot<ApolloDriverConfig>({
       driver: ApolloDriver,
       autoSchemaFile: true,
     }),
     LessonModule,
-    StudentModule
+    StudentModule,
   ],
+  providers: [JsonStorageService],
 })
 export class AppModule {}
