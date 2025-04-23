@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://schemas.xmlsoap.org/wsdl/"
+             xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+             xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+             xmlns:tns="http://example.com/school"
+             targetNamespace="http://example.com/school"
+             name="SchoolService">
+
+  <types>
+    <xsd:schema targetNamespace="http://example.com/school"
+                xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+                elementFormDefault="qualified">
+      <xsd:element name="Aluno">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="id" type="xsd:int"/>
+            <xsd:element name="nome" type="xsd:string"/>
+            <xsd:element name="idade" type="xsd:int"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="IdRequest">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="id" type="xsd:int"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="ResultResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="result" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+    </xsd:schema>
+  </types>
+
+  <message name="CreateAlunoRequest">
+    <part name="aluno" element="tns:Aluno"/>
+  </message>
+  <message name="CreateAlunoResponse">
+    <part name="output" element="tns:CreateAlunoOutput"/>
+  </message>
+
+  <portType name="SchoolPortType">
+    <operation name="CreateAluno">
+      <input message="tns:CreateAlunoRequest"/>
+      <result message="tns:CreateAlunoResponse"/>
+    </operation>
+  </portType>
+
+  <binding name="SchoolBinding" type="tns:SchoolPortType">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <operation name="CreateAluno">
+      <soap:operation soapAction="CreateAluno"/>
+      <input><soap:body use="literal"/></input>
+      <output><soap:body use="literal"/></output>
+    </operation>
+  </binding>
+
+  <service name="SchoolService">
+    <port name="SchoolPort" binding="tns:SchoolBinding">
+      <soap:address location="http://localhost:8000/schoolService"/>
+    </port>
+  </service>
+</definitions>

@@ -12,12 +12,12 @@ export async function postAluno(req, res) {
   res.status(201).json({ mensagem: 'Usuário criado', aluno: novo });
 }
 
-export function putAluno(req, res) {
-  
-
+export async function putAluno(req, res) {
+  const put = await alunoService.putAluno(req.body);
+  res.json(put);
 }
 
-export function deleteAluno(req, res) {
-  
-
+export async function deleteAluno(req, res) {
+  const del = await alunoService.deleteAluno(req.body);
+  res.json(del);
 }

@@ -1,0 +1,26 @@
+{
+  "name": "projeto_is",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/laysasiqueira/projeto_is.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/laysasiqueira/projeto_is/issues"
+  },
+  "homepage": "https://github.com/laysasiqueira/projeto_is#readme",
+  "description": "",
+  "dependencies": {
+    "express": "^5.1.0",
+    "libxmljs2": "^0.35.0",
+    "strong-soap": "^4.1.11",
+    "xml2js": "^0.6.2"
+  }
+}
