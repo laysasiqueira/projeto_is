@@ -7,7 +7,7 @@ async function bootstrap() {
     cors: {
       origin: [
         'https://studio.apollographql.com',
-        'http://localhost:3000',            
+        'http://localhost:7000',            
       ],
       credentials: true,
   }}
@@ -15,6 +15,6 @@ async function bootstrap() {
 
   app.useGlobalPipes(new ValidationPipe());
 
-  await app.listen(process.env.PORT ?? 3000);
+  await app.listen(process.env.PORT ?? 7000);
 }
 bootstrap();
