@@ -1,1 +1,32 @@
-[]
+[
+  {
+    "id": "b792c785-66d7-48d2-aa4f-c9e34c64afec",
+    "nome": "Aritmetica",
+    "docente": "sergio",
+    "tipo": "Anual"
+  },
+  {
+    "id": "a92f9f52-8aeb-4107-bec7-b033777fce39",
+    "nome": "Aritmetica",
+    "docente": "sergio",
+    "tipo": "Anual"
+  },
+  {
+    "id": "7c861021-4205-49ee-85c2-f4683ab8b97d",
+    "nome": "Aritmetica",
+    "docente": "sergio",
+    "tipo": "Anual"
+  },
+  {
+    "id": "b536621f-90f9-4400-8d56-e1d9e4c3f66f",
+    "nome": "Aritmetica",
+    "docente": "sergio",
+    "tipo": "Anual"
+  },
+  {
+    "id": "50fdf22e-b46c-4963-bbbe-8b0a6d5bfd38",
+    "nome": "matematica",
+    "docente": "cassia",
+    "tipo": "Anual"
+  }
+]

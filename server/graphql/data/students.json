@@ -1,16 +1,14 @@
 [
   {
-    "id": "17d6ce3e-16a0-4c13-b3b1-f126d5b00637",
-    "nome": "jkh",
-    "ano": "2",
-    "tipo": "Nacional",
-    "lessons": [
-      "a496bb28-dd4f-47a6-b67b-8b0bd7a3bbee"
-    ]
-  },
-  {
     "id": "87c58d0c-a319-4b66-9f82-882651e371a0",
     "nome": "aaaaaaaaaaaaaaaaaaaaaa",
+    "ano": "2",
+    "tipo": "Nacional",
+    "lessons": []
+  },
+  {
+    "id": "e7243d00-578f-4d0f-a2de-ed26da69ecc4",
+    "nome": "bbbbbbb",
     "ano": "2",
     "tipo": "Nacional",
     "lessons": []
