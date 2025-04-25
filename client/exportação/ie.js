@@ -1,3 +1,5 @@
+//exportação
+
 const fs = require('fs');
 const path = require('path');
 const { Builder } = require('xml2js');
