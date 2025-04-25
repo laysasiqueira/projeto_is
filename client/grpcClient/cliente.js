@@ -58,7 +58,7 @@ async function addStudents() {
       { name: 'id', message: 'ID do aluno:' },
       { name: 'name', message: 'Nome do aluno:' }
     ]);
-
+    
     call.write({ id, name });
 
     const { addMore } = await inquirer.prompt([
