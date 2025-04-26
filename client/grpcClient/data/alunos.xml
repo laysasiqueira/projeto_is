@@ -1,0 +1,14 @@
+<students>
+  <student>
+    <id>1</id>
+    <name>João Silva</name>
+  </student>
+  <student>
+    <id>2</id>
+    <name>Maria Santos</name>
+  </student>
+  <student>
+    <id>3</id>
+    <name>Carlos Oliveira</name>
+  </student>
+</students>
