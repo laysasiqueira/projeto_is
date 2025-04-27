@@ -25,9 +25,9 @@ async function readXmlFile(filePath) {
   // Corrigir se os campos vierem como objetos
   const cleanStudents = students.map(student => ({
     id: typeof student.id === 'object' ? student.id._ : student.id,
-    Nome: typeof student.Nome === 'object' ? student.Nome._ : student.Nome,
-    Idade: typeof student.Idade === 'object' ? parseInt(student.Idade._) : parseInt(student.Idade),
-    Turma: typeof student.Turma === 'object' ? student.Turma._ : student.Turma
+    name: typeof student.Nome === 'object' ? student.name._ : student.name,
+    idade: typeof student.idade === 'object' ? parseInt(student.idade._) : parseInt(student.idade),
+    turma: typeof student.turma === 'object' ? student.turma._ : student.turma
   }));
 
   return cleanStudents;
@@ -51,11 +51,11 @@ async function importStudents(filePath) {
     try {
       await axios.post('http://localhost:3000/usuarios', {
         id: student.id,
-        Nome: student.Nome,
-        Idade: student.Idade,
-        Turma: student.Turma
+        name: student.name,
+        idade: student.idade,
+        turma: student.turma
       });
-      console.log(`✅ Aluno enviado: ID: ${student.id} - Nome: ${student.Nome} - Idade: ${student.Idade} - Turma: ${student.Turma}`);
+      console.log(`✅ Aluno enviado: ID: ${student.id} - Nome: ${student.name} - Idade: ${student.idade} - Turma: ${student.turma}`);
     } catch (error) {
       console.error('❌ Erro ao enviar aluno:', error.response?.data || error.message);
     }

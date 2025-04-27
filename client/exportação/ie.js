@@ -8,8 +8,8 @@ const { Builder } = require('xml2js');
 const filePaths = [
   path.resolve(__dirname, '../../server/graphql/data/students.json'),
   path.resolve(__dirname, '../../server/graphql/data/lessons.json'),
-  path.resolve(__dirname, '../../server/grpc/data/students.json'),
-  path.resolve(__dirname, '../../server/rest/database/alunos.json')
+  path.resolve(__dirname, '../../server/rest/database/alunos.json'),
+  path.resolve(__dirname, '../../server/grpc/data/students.json')
 ];
 
 // Função para ler JSON de um arquivo

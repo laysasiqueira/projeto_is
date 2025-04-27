@@ -1,32 +1,32 @@
 <students>
   <student>
     <id>0380910c-6827-4c67-b152-49debb8b172e</id>
-    <Nome>João Silva</Nome>
-    <Idade>20</Idade>
-    <Turma>A1</Turma>
+    <name>João Silva</name>
+    <idade>20</idade>
+    <turma>A1</turma>
   </student>
   <student>
     <id>6975605a-cc21-404f-8658-9a080044d150</id>
-    <Nome>Maria Santos</Nome>
-    <Idade>21</Idade>
-    <Turma>B2</Turma>
+    <name>Maria Santos</name>
+    <idade>21</idade>
+    <turma>B2</turma>
   </student>
   <student>
     <id>a117c000-0e8e-4eef-a13e-f43d16201d65</id>
-    <Nome>Carlos Oliveira</Nome>
-    <Idade>22</Idade>
-    <Turma>C1</Turma>
+    <name>Carlos Oliveira</name>
+    <idade>22</idade>
+    <turma>C1</turma>
   </student>
   <student>
     <id>439ad10f-933e-4d22-b3df-e34fd2342a03</id>
-    <Nome>Ana Costa</Nome>
-    <Idade>23</Idade>
-    <Turma>A2</Turma>
+    <name>Ana Costa</name>
+    <idade>23</idade>
+    <turma>A2</turma>
   </student>
   <student>
     <id>b3e7b847-e4b3-420c-b800-3bd4eafcd5ff</id>
-    <Nome>Pedro Martins</Nome>
-    <Idade>24</Idade>
-    <Turma>B1</Turma>
+    <name>neuza Amelia</name>
+    <idade>55</idade>
+    <turma>B1</turma>
   </student>
 </students>
